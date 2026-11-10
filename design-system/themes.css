@@ -1,0 +1,229 @@
+/* ===========================================================
+   SYS Design System · Themes
+   Three site identities built on the same foundations.
+   Every component reads ONLY --site-* / scale tokens.
+   =========================================================== */
+
+/* ===========================================================
+   Shared theme architecture (structure of every site theme)
+   =========================================================== */
+:root {
+  /* Every theme must define */
+  --site-accent: #2f80ee;
+  --site-accent-strong: #0f52bd;
+  --site-on-accent: #fff;
+  --site-accent-soft: #eff6ff;
+
+  /* Surfaces */
+  --site-bg: var(--ink-50);
+  --site-fg: var(--ink-900);
+  --site-muted: var(--ink-500);
+  --site-card: #fff;
+  --site-card-border: var(--ink-200);
+  --site-card-alt: var(--ink-50);           /* subtle inset cards */
+  --site-chip-bg: var(--ink-100);
+  --site-chip-border: var(--ink-200);
+  --site-chip-fg: var(--ink-800);
+
+  /* Inputs */
+  --site-input-bg: #fff;
+  --site-input-border: var(--ink-200);
+  --site-input-fg: var(--ink-900);
+
+  /* Table */
+  --site-table-head-bg: var(--ink-50);
+  --site-table-head-fg: var(--ink-600);
+  --site-table-hover: var(--ink-50);
+
+  /* Hero */
+  --site-hero-bg: linear-gradient(160deg, #061227 8%, #08203c 46%, #0b2655 100%);
+  --site-hero-fg: #fff;
+  --site-hero-accent: #93c5fd;
+  --site-hero-grid-opacity: .5;
+  --site-hero-lead: var(--brand-100, #dbeafe);
+  --site-hero-stat-bg: rgba(255, 255, 255, .06);
+  --site-hero-stat-border: rgba(191, 219, 254, .18);
+  --site-hero-stat-fg: #fff;
+  --site-hero-stat-label: #bfdbfe;
+
+  /* Buttons (outline border token, remapped in dark) */
+  --site-btn-border: var(--ink-300);
+
+  /* Eyebrow */
+  --site-eyebrow-bg: var(--ink-50);
+  --site-eyebrow-fg: var(--ink-700);
+  --site-eyebrow-border: var(--ink-200);
+}
+
+/* Brand scale (blue) — defined once, aliased by competition & medical */
+:root {
+  --brand-50:  #eff6ff;
+  --brand-100: #dbeafe;
+  --brand-200: #bfdbfe;
+  --brand-300: #93c5fd;
+  --brand-400: #60a5fa;
+  --brand-500: #2f80ee;
+  --brand-600: #1667e8;
+  --brand-700: #0f52bd;
+  --brand-800: #0d3f92;
+  --brand-900: #0b2655;
+  --brand-950: #061733;
+}
+
+/* ===========================================================
+   × Competition — tech-blue (the SYS core identity)
+   =========================================================== */
+[data-site='competition'] {
+  --site-accent: var(--brand-500);
+  --site-accent-strong: var(--brand-700);
+  --site-accent-soft: var(--brand-50);
+
+  --site-hero-accent: #93c5fd;
+  --site-hero-lead: var(--brand-100);
+  --site-hero-stat-label: var(--brand-200);
+
+  --site-eyebrow-bg: var(--brand-50);
+  --site-eyebrow-fg: var(--brand-700);
+  --site-eyebrow-border: var(--brand-100);
+}
+
+/* ===========================================================
+   × Medical Day — cyan accent over the same brand/ink base
+   =========================================================== */
+[data-site='medical'] {
+  --accent-300: #7fe0fa;
+  --accent-400: #38d0f5;
+  --accent-500: #22c3f0;
+  --accent-600: #0ba5d4;
+
+  --site-accent: var(--accent-500);
+  --site-accent-strong: var(--accent-600);
+  --site-on-accent: #04222e;
+  --site-accent-soft: #ecfeff;
+
+  --site-hero-bg: linear-gradient(160deg, #061227 8%, #06283f 46%, #0b3a55 100%);
+  --site-hero-accent: var(--accent-400);
+  --site-hero-lead: #bae6fd;
+
+  --site-eyebrow-bg: #ecfeff;
+  --site-eyebrow-fg: #0e7490;
+  --site-eyebrow-border: #a5f3fc;
+}
+
+/* ===========================================================
+   × Youth Hub — deep navy primary (from the Lovable build)
+   =========================================================== */
+[data-site='youth'] {
+  --navy-950: #0b1a3e;
+  --navy-900: #10275e;
+  --navy-800: #172e6e;
+  --navy-600: #2c3f8f;
+  --navy-300: #7e93d8;
+  --navy-light: #dbe3f5;
+
+  --site-accent: var(--navy-900);
+  --site-accent-strong: var(--navy-950);
+  --site-on-accent: #fff;
+  --site-accent-soft: var(--navy-light);
+
+  --site-fg: #131c33;
+  --site-muted: #5e6b87;
+  --site-card-border: #e3e9f2;
+  --site-hero-bg: linear-gradient(165deg, #0b1a3e 10%, #10275e 100%);
+  --site-hero-accent: var(--navy-300);
+  --site-hero-lead: var(--navy-light);
+  --site-hero-stat-label: var(--navy-light);
+
+  --site-eyebrow-bg: var(--navy-light);
+  --site-eyebrow-fg: var(--navy-900);
+  --site-eyebrow-border: #c6d2ee;
+}
+
+/* ===========================================================
+   Dark mode — one remap for every theme
+   =========================================================== */
+[data-mode='dark'] {
+  --site-bg: var(--ink-950);
+  --site-fg: var(--ink-100);
+  --site-muted: var(--ink-400);
+  --site-card: var(--ink-800);
+  --site-card-border: var(--ink-700);
+  --site-card-alt: var(--ink-900);
+  --site-chip-bg: var(--ink-900);
+  --site-chip-border: var(--ink-700);
+  --site-chip-fg: var(--ink-200);
+
+  --site-accent-soft: color-mix(in srgb, var(--site-accent) 20%, transparent);
+  --site-btn-border: var(--ink-600);
+  --site-eyebrow-bg: color-mix(in srgb, var(--site-accent) 16%, transparent);
+  --site-eyebrow-fg: var(--brand-300);
+  --site-eyebrow-border: color-mix(in srgb, var(--site-accent) 30%, transparent);
+  --site-hero-accent: var(--brand-300);
+  --site-hero-lead: var(--brand-200);
+  --site-hero-stat-border: var(--ink-700);
+  --site-hero-stat-label: var(--brand-200);
+
+  --site-input-bg: var(--ink-900);
+  --site-input-border: var(--ink-700);
+  --site-input-fg: var(--ink-100);
+
+  --site-table-head-bg: var(--ink-900);
+  --site-table-head-fg: var(--ink-400);
+  --site-table-hover: var(--ink-800);
+
+  /* status backgrounds get quiet dark tints */
+  --ok-bg: rgba(0, 151, 103, .14);
+  --warn-bg: rgba(183, 80, 0, .14);
+  --danger-bg: rgba(220, 38, 38, .14);
+}
+
+/* keep readable accent text in dark, per theme */
+[data-site='medical'][data-mode='dark'] { --site-eyebrow-fg: #67e8f9; --site-hero-accent: #67e8f9; }
+[data-site='youth'][data-mode='dark']   { --site-eyebrow-fg: var(--navy-300); --site-hero-accent: var(--navy-300); --site-accent-soft: rgba(126, 147, 216, .16); }
+
+/* light-mode outline border token (dark value set above) */
+[data-mode='light'], [data-mode] {
+  --site-btn-border: var(--ink-300);
+}
+
+[data-site='youth'][data-mode='dark'] {
+  --site-card: #131c33;
+  --site-card-border: #26314f;
+  --site-card-alt: #0d1730;
+}
+
+/* ===========================================================
+   Theme root — surfaces + global transitions
+   =========================================================== */
+.theme-root {
+  min-height: 100dvh;
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  line-height: var(--leading-base);
+  background: var(--site-bg);
+  color: var(--site-fg);
+  -webkit-font-smoothing: antialiased;
+  transition:
+    background var(--dur-theme) var(--ease-standard),
+    color var(--dur-theme) var(--ease-standard);
+}
+
+.theme-root h1, .theme-root h2, .theme-root h3, .theme-root h4 {
+  line-height: var(--leading-tight);
+  font-weight: var(--fw-extra);
+  letter-spacing: -.01em;
+}
+
+.theme-root :focus-visible {
+  outline: 2px solid var(--site-accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+::selection { background: var(--site-accent); color: var(--site-on-accent); }
+
+/* Quiet themed scrollbars */
+.theme-root *::-webkit-scrollbar { width: 10px; height: 10px; }
+.theme-root *::-webkit-scrollbar-thumb { background: var(--ink-300); border-radius: var(--radius-full); }
+.theme-root *::-webkit-scrollbar-thumb:hover { background: var(--ink-400); }
+[data-mode='dark'] .theme-root *::-webkit-scrollbar-thumb { background: var(--ink-700); }

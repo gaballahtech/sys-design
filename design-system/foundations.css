@@ -1,0 +1,159 @@
+/* ===========================================================
+   SYS Design System · Foundations
+  /apps | one source of truth for every site brand layer (themes.css) reads these scales
+   =========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html, body, h1, h2, h3, h4, h5, h6, p, ul, ol, figure { margin: 0; }
+body { min-height: 100dvh; }
+img, svg { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+input, select, textarea { font: inherit; color: inherit; }
+
+/* ---------- Typography (Cairo · RTL-native) ---------- */
+:root {
+  --font-sans: 'Cairo', 'Tajawal', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --fw-light: 300;
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extra: 800;
+  --fw-black: 900;
+
+  --leading-tight: 1.25;
+  --leading-base: 1.55;
+  --leading-loose: 1.85;
+}
+
+/* ---------- Spacing (4/8pt scale) ---------- */
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+}
+
+/* ---------- Type scale ---------- */
+:root {
+  --text-2xs: 0.72rem;   /* eyebrows, codes */
+  --text-xs:  0.78rem;   /* tags, hints */
+  --text-sm:  0.86rem;   /* labels, chips */
+  --text-md:  0.93rem;   /* body-default */
+  --text-base: 1rem;
+  --text-lg: 1.06rem;    /* card titles */
+  --text-xl: 1.3rem;     /* panel titles */
+  --text-2xl: 1.5rem;
+  --text-3xl: clamp(1.45rem, 3.4vw, 2.05rem);  /* section h2 */
+  --text-hero: clamp(1.85rem, 5vw, 3rem);      /* h1 */
+}
+
+/* ---------- Radius ---------- */
+:root {
+  --radius-xs: 8px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 999px;
+}
+
+/* ---------- Elevation (shadows tinted by --ink-950, never plain black) ---------- */
+:root {
+  --elev-1: 0 1px 2px rgba(6, 18, 39, .05), 0 1px 3px rgba(6, 18, 39, .07);
+  --elev-2: 0 4px 10px -6px rgba(6, 18, 39, .14), 0 2px 6px rgba(6, 18, 39, .06);
+  --elev-3: 0 14px 34px -14px rgba(6, 18, 39, .20);
+  --elev-4: 0 28px 60px -28px rgba(6, 18, 39, .32);
+  --elev-5: 0 34px 70px -34px rgba(6, 18, 39, .45);
+  --elev-glow: 0 14px 30px -14px var(--site-accent);
+}
+
+/* ---------- Motion ---------- */
+:root {
+  --dur-1: 110ms;   /* micro: hover/press */
+  --dur-2: 180ms;   /* standard transitions */
+  --dur-3: 260ms;   /* entrance, larger surfaces */
+  --dur-4: 420ms;   /* hero entrance */
+  --dur-theme: 320ms;
+
+  --ease-standard: cubic-bezier(.4, 0, .2, 1);
+  --ease-decel: cubic-bezier(0, 0, .2, 1);
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+}
+
+/* ---------- Z-index scale ---------- */
+:root {
+  --z-base: 0;
+  --z-raised: 10;
+  --z-sticky: 50;
+  --z-overlay: 100;
+  --z-modal: 200;
+}
+
+/* ---------- Shared base colors (never brand — brands live in themes.css) ---------- */
+:root {
+  --ink-50:  #f6f8fc;
+  --ink-100: #eef2f9;
+  --ink-200: #dde4f0;
+  --ink-300: #c3cfe3;
+  --ink-400: #94a3bd;
+  --ink-500: #64748b;
+  --ink-600: #475569;
+  --ink-700: #334155;
+  --ink-800: #1e2b45;
+  --ink-900: #0d1930;
+  --ink-950: #061227;
+
+  --ok:        #009767;
+  --ok-bg:     #ecfdf5;
+  --ok-border: #a4f4cf;
+  --warn:      #b75000;
+  --warn-bg:   #fffbeb;
+  --warn-border: #fee685;
+  --danger:    #dc2626;
+  --danger-bg: #fef2f2;
+  --danger-border: #fecaca;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Theme reveal عبر View Transitions API ----------
+   اتجاهان معاكسان بنفس نقطة الأصل (مكان السويتش):
+   → داكن "موجة هجوم": الثيم الجديد فوق وينكسر دائريًا من النقطة (clip على ::new)
+   → فاتح "موجة رجوع": الثيم القديم (الداكن) فوق وينكمش دائريًا راجعًا من الأطراف
+     ناحية النقطة نفسها — الفاتح يرجع من برّه للزر بنفس المسار بالعكس (clip على ::old)
+   نُسقط cross-fade الافتراضي — الحركة الوحدة (Color-only contract). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+/* الافتراضي (هجوم): الثيم الجديد فوق */
+::view-transition-old(root) { z-index: 0; }
+::view-transition-new(root) { z-index: 1; }
+/* الرجوع (data-vt='to-light' من JS): قلّب الطبقات — القديم فوق وينكمش هو المقطوع */
+html[data-vt='to-light']::view-transition-old(root) { z-index: 1; }
+html[data-vt='to-light']::view-transition-new(root) { z-index: 0; }
+
+/* أثناء التقاط اللقطة: أوقف أي انتقالات لونية كي تكون الألوان نهائية في الصورة المُثبّتة */
+.sys-vt, .sys-vt *, .sys-vt *::before, .sys-vt *::after { transition: none !important; }
