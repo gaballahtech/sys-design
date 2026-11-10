@@ -76,6 +76,12 @@ const youthPartners = [
   "Banker's Lounge", "Kerma", "Avenix", "Corevia", "Zentrox",
 ];
 
+const rankOrdinals = ["أول", "ثاني", "ثالث", "رابع", "خامس", "سادس", "سابع", "ثامن", "تاسع", "عاشر"];
+
+function rankOrdinal(n: number) {
+  return rankOrdinals[n - 1] ?? `#${n}`;
+}
+
 const youthLeaderboard = [
   { rank: 1, name: "Youssef Nabil", points: 950, badge: "Gold" },
   { rank: 2, name: "Nour El-Din", points: 880, badge: "Silver" },
@@ -989,7 +995,7 @@ function App() {
                     <tbody>
                       {youthLeaderboard.map((r) => (
                         <tr key={r.rank}>
-                          <td data-label="الترتيب" className="num"><b>{r.rank}</b></td>
+                          <td data-label="الترتيب">{rankOrdinal(r.rank)}</td>
                           <td data-label="الاسم" style={{ fontWeight: 700 }}>{r.name}</td>
                           <td data-label="النقاط" className="num">{r.points}</td>
                           <td data-label="المستوى">{r.badge && <span className="sys-tag">{r.badge}</span>}</td>
